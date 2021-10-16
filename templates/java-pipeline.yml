@@ -13,6 +13,7 @@ variables:
 
   TEST_SHELL: 'mvn test'
   JUNIT_REPORT_PATH: 'target/surefire-reports/TEST-*.xml'
+  TEST_IMAGE: 'maven:3.8.3-jdk-8'
 
 # 定义全局缓存
 cache:

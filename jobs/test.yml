@@ -1,5 +1,6 @@
 .test:
   stage: test
+  image: ${TEST_IMAGE}
   #tags:
   #  - build
   sript:
