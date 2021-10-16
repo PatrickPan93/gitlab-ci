@@ -6,14 +6,14 @@ include:
     ref: main
     file: 'jobs/test.yml'
 
+# could customize your build param here or by default as the undermentioned
 variables:
-  BUILD_SHELL: 'npm install'
-  CACHE_DIR: 'dist/'
+  BUILD_SHELL: 'npm install & npm run build'
+  CACHE_DIR: 'build/'
   BUILD_IMAGE: 'node:14.17.6-stretch-slim'
 
-  TEST_SHELL: 'npm test'
+  TEST_SHELL: 'npm install & npm test'
   TEST_IMAGE: 'node:14.17.6-stretch-slim'
-
 # 定义全局缓存
 cache:
   paths:
