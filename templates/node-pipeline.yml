@@ -25,6 +25,7 @@ stages:
   - test
 install:
   stage: install
+  image: ${BUILD_IMAGE}
   script:
     - 'npm install'
 build:
