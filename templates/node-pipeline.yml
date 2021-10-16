@@ -12,7 +12,7 @@ variables:
   CACHE_DIR: 'build/'
   BUILD_IMAGE: 'node:14.17.6-stretch-slim'
 
-  TEST_SHELL: 'npm install && npm test'
+  TEST_SHELL: 'npm test'
   TEST_IMAGE: 'node:14.17.6-stretch-slim'
 # 定义全局缓存
 cache:
