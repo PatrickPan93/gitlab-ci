@@ -6,7 +6,7 @@ include:
 variables:
   BUILD_SHELL: 'mvn clean package -DskipTests'
   CACHE_DIR: 'target/'
-
+  BUILD_IMAGE: 'maven:3.8.3-jdk-8'
 # 定义全局缓存
 cache:
   paths:

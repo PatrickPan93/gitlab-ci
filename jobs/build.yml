@@ -1,5 +1,6 @@
 .build:
   stage: build
+  image: ${BUILD_IMAGE}
   #tags:
   #  - build
   script:
