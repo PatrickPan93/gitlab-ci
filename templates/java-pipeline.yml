@@ -31,3 +31,6 @@ build:
 test:
   stage: test
   extends: .test
+  artifacts:
+    reports:
+      junit: ${JUNIT_REPORT_PATH}

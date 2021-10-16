@@ -7,31 +7,31 @@ include:
     file: 'jobs/test.yml'
 
 # could customize your build param here or by default as the undermentioned
-variables:
-  BUILD_SHELL: 'npm run build'
-  CACHE_DIR: 'build/'
-  BUILD_IMAGE: 'node:14.17.6-stretch-slim'
+#variables:
+#  BUILD_SHELL: 'npm run build'
+#  CACHE_DIR: 'build/'
+#  BUILD_IMAGE: 'node:14.17.6-stretch-slim'
 
-  TEST_SHELL: 'npm run test'
-  TEST_IMAGE: 'node:14.17.6-stretch-slim'
-# 定义全局缓存
-cache:
-  paths:
-    - ${CACHE_DIR}
-    - node_modules/
-stages:
-  - install
-  - build
-  - test
-install:
-  stage: install
-  image: ${BUILD_IMAGE}
-  script:
-    - 'npm install'
-build:
-  stage: build
-  extends: .build
+#  TEST_SHELL: 'npm run test'
+#  TEST_IMAGE: 'node:14.17.6-stretch-slim'
+## 定义全局缓存
+#cache:
+#  paths:
+#    - ${CACHE_DIR}
+#    - node_modules/
+#stages:
+#  - install
+#  - build
+#  - test
+#install:
+#  stage: install
+#  image: ${BUILD_IMAGE}
+#  script:
+#    - 'npm install'
+#build:
+#  stage: build
+#  extends: .build
 
-test:
-  stage: test
-  extends: .test
+#test:
+#  stage: test
+#  extends: .test
