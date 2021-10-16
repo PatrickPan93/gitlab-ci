@@ -8,7 +8,7 @@ include:
 
 # could customize your build param here or by default as the undermentioned
 variables:
-  BUILD_SHELL: 'npm install && npm run build'
+  BUILD_SHELL: 'npm run build'
   CACHE_DIR: 'build/'
   BUILD_IMAGE: 'node:14.17.6-stretch-slim'
 
@@ -20,9 +20,13 @@ cache:
     - ${CACHE_DIR}
     - node_modules/
 stages:
+  - install
   - build
   - test
-
+install:
+  stage: install
+  script:
+    - 'npm install'
 build:
   stage: build
   extends: .build
