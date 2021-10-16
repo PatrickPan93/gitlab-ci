@@ -2,11 +2,18 @@ include:
   - project: 'devops/gitlab-ci'
     ref: main
     file: 'jobs/build.yml'
+  - project: 'devops/gitlab-ci'
+    ref: main
+    file: 'jobs/test.yml'
 
 variables:
   BUILD_SHELL: 'mvn clean package -DskipTests'
   CACHE_DIR: 'target/'
   BUILD_IMAGE: 'maven:3.8.3-jdk-8'
+
+  TEST_SHELL: 'mvn test'
+  JUNIT_REPORT_PATH: 'target/surefire-reports/TEST-*.xml'
+
 # 定义全局缓存
 cache:
   paths:
@@ -14,7 +21,12 @@ cache:
 
 stages:
   - build
-
+  - test
+  -
 build:
   stage: build
   extends: .build
+
+test:
+  stage: test
+  extends: .test
