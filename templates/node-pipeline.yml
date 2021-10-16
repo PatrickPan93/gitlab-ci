@@ -14,6 +14,7 @@ variables:
 
   TEST_SHELL: 'npm run test'
   TEST_IMAGE: 'node:14.17.6-stretch-slim'
+
 # 定义全局缓存
 cache:
   paths:
