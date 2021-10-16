@@ -3,7 +3,7 @@
   image: ${TEST_IMAGE}
   #tags:
   #  - build
-  sript:
+  script:
     - $TEST_SHELL
     - ls
   artifacts:
