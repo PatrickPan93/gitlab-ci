@@ -5,6 +5,9 @@ include:
   - project: 'devops/gitlab-ci'
     ref: main
     file: 'jobs/test.yml'
+  - project: 'devops/gitlab-ci'
+    ref: main
+    file: 'jobs/code-analysis.yml'
 
 variables:
   JUNIT_REPORT_PATH: 'target/surefire-reports/TEST-*.xml'
@@ -16,6 +19,9 @@ variables:
   TEST_SHELL: 'mvn test'
   TEST_IMAGE: 'maven:3.8.3-jdk-8'
 
+  SONAR_SCANNER_IMAGE: 'sonarsource/sonar-scanner-cli:4.6'
+  SCAN_DIR: 'src'
+  ARTIFACT_PATH: 'target/*.jar'
 # 定义全局缓存
 cache:
   paths:
@@ -24,6 +30,7 @@ cache:
 stages:
   - build
   - test
+  - code-analysis
 
 build:
   stage: build
@@ -35,3 +42,7 @@ test:
   artifacts:
     reports:
       junit: ${JUNIT_REPORT_PATH}
+
+code-analysis:
+  stage: code-analysis
+  extends: .code-analysis
