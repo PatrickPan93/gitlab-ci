@@ -8,7 +8,10 @@
   # https://github.com/mc1arke/sonarqube-community-branch-plugin/tree/master
   script:
     - echo $CI_MERGE_REQUEST_IID $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
-    - "sonar-scanner -Dsonar.projectKey=${CI_PROJECT_NAME} \
+    - "sonar-scanner -Dsonar.host.url=http://sonarqube-sonarqube:9000 \
+                     -Dsonar.login=admin \
+                     -Dsonar.password=pzb19930830 \
+                     -Dsonar.projectKey=${CI_PROJECT_NAME} \
                      -Dsonar.projectName=${CI_PROJECT_NAME} \
                      -Dsonar.projectVersion=${CI_COMMIT_REF_NAME} \
                      -Dsonar.ws.timeout=30 \
@@ -17,7 +20,7 @@
                      -Dsonar.source=${SCAN_DIR} \
                      -Dsonar.sourceEncoding=UTF-8 \
                      -Dsonar.java.binaries=target/classes \
-                     -Dsonar.java.test.binaries=target/classes \
+                     -Dsonar.java.test.binaries=target/test-classes \
                      -Dsonar.java.surefire.report=target/surefire-reports \
                      -Dsonar.branch.name=${CI_COMMIT_REF_NAME}"
   artifacts:
