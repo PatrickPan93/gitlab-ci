@@ -40,8 +40,8 @@ cache:
 stages:
   - build
   - test
-  - code-analysis
-  - deploy-artifacrt
+  - parallel01
+
 build:
   stage: build
   extends: .build
