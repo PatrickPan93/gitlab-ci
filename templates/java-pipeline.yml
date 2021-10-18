@@ -22,6 +22,16 @@ variables:
   SONAR_SCANNER_IMAGE: 'sonarsource/sonar-scanner-cli:4.6'
   SCAN_DIR: 'src'
   ARTIFACT_PATH: 'target/*.jar'
+
+  ARTIFACTORY_USER: "admin"
+  ARTIFACTORY_PASSWORD: "Pzb19930830"
+  # ${ARTIFACTORY_URL}/${ARTIFACTORY_NAME}/${TARGET_FILE_PATH}/${TARGET_ARTIFACT_NAME}
+  ARTIFACTORY_URL: "http://artifactory.devops.com:8082"
+  # repo name
+  ARTIFACTORY_NAME: "ci-devops"
+  TARGET_FILE_PATH: "${CI_PROJECT_NAMESPACE}/${deploy-artifactCI_PROJECT_NAME}/${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHORT_SHA}-${CI_PIPELINE_ID}"
+  TARGET_ARTIFACT_NAME: "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHORT_SHA}-${CI_PIPELINE_ID}.jar"
+
 # 定义全局缓存
 cache:
   paths:
@@ -31,7 +41,7 @@ stages:
   - build
   - test
   - code-analysis
-
+  - deploy-artifacrt
 build:
   stage: build
   extends: .build
@@ -43,6 +53,11 @@ test:
     reports:
       junit: ${JUNIT_REPORT_PATH}
 
+# use the same stage name to parallel01
 code-analysis:
-  stage: code-analysis
+  stage: parallel01
   extends: .code-analysis
+
+deploy-artifacts:
+  stage: parallel01
+  extends: .deploy-artifact

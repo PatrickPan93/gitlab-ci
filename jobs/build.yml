@@ -6,3 +6,8 @@
   script:
     - $BUILD_SHELL
     - ls
+
+.deploy-artifact:
+  stage: deploy-artifact
+  script:
+    - "curl -u ${ARTIFACTORY_USER}:${ARTIFACTORY_PASSWORD} -T ${ARTIFACT_PATH} ${ARTIFACTORY_URL}/${ARTIFACTORY_NAME}/${TARGET_FILE_PATH}/${TARGET_ARTIFACT_NAME}"
