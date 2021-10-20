@@ -39,6 +39,7 @@ variables:
 
 # 定义全局缓存
 cache:
+  key: ${CI_COMMIT_REF_SLUG}
   paths:
     - ${CACHE_DIR}
     - ${MAVEN_CACHE}
