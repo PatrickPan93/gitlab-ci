@@ -16,7 +16,7 @@
   rules:
     - if: " $DEPLOY_ARTIFACT_TO_ARTIFACTORY == 'no' "
       when: never
-    - when: always
+    - when: on_success
 
 .build-image:
   stage: build-image
@@ -29,4 +29,4 @@
   rules:
     - if: " $RUN_BUILD_IMAGE == 'no' "
       when: never
-    - when: always
+    - when: on_success
