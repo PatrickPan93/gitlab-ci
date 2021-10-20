@@ -27,6 +27,7 @@ variables:
   TEST_IMAGE: 'maven:3.8.3-jdk-8'
   JUNIT_REPORT_PATH: 'target/surefire-reports/TEST-*.xml'
 
+  SONAR_PROJECT_LANG: "JAVA"
   SONAR_SCANNER_IMAGE: 'sonarsource/sonar-scanner-cli:4.6'
   SONAR_SERVER_URL: 'http://sonarqube-sonarqube:9000'
   SCAN_DIR: 'src'
