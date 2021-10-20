@@ -24,6 +24,10 @@
   script:
     #- echo $CI_MERGE_REQUEST_IID $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
     - "sonar-scanner ${GLOBAL_PROJECT_ARGS} ${GLOBAL_SERVER_ARGS} ${SONAR_SCAN_ARGS} ${MULTI_BRANCH_ARGS}"
-  artifacts:
-    paths:
-      - "${ARTIFACT_PATH}"
+  #artifacts:
+  #  paths:
+  #    - "${ARTIFACT_PATH}"
+  rules:
+    - if: " $RUN_CODE_ANALYSIS == 'no' "
+      when: never
+    - when: on_success

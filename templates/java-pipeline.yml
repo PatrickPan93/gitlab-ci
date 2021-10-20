@@ -27,6 +27,7 @@ variables:
   RUN_PIPELINE_BUILD: 'yes'
   DEPLOY_ARTIFACT_TO_ARTIFACTORY: 'yes'
   RUN_BUILD_IMAGE: 'yes'
+  RUN_CODE_ANALYSIS: 'yes'
 
   TEST_SHELL: 'mvn test -Dmaven.repo.local=.m2/repository/'
   TEST_IMAGE: 'maven:3.8.3-jdk-8'
@@ -35,6 +36,7 @@ variables:
   SONAR_PROJECT_LANG: "JAVA"
   SONAR_SCANNER_IMAGE: 'sonarsource/sonar-scanner-cli:4.6'
   SONAR_SERVER_URL: 'http://sonarqube-sonarqube:9000'
+  #SONAR_LOGIN: ""
   SCAN_DIR: 'src'
   SONAR_USER: 'admin'
   SONAR_PASSWORD: 'pzb19930830'
@@ -44,7 +46,6 @@ variables:
                     -Dsonar.java.surefire.report=target/surefire-reports'
 
   ARTIFACT_PATH: 'target/*.jar'
-
   ARTIFACTORY_USER: "admin"
   ARTIFACTORY_PASSWORD: "Pzb19930830"
   ARTIFACTORY_URL: "http://artifactory.devops.com:8081"
