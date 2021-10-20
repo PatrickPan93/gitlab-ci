@@ -11,8 +11,7 @@ include:
 
 variables:
   # control whether pull the latest code
-  GIT_CHECKOUT: "false"
-  JUNIT_REPORT_PATH: 'target/surefire-reports/TEST-*.xml'
+  #GIT_CHECKOUT: "false"
   CACHE_DIR: 'target/'
   MAVEN_CACHE: '.m2/repository/'
   BUILD_SHELL: 'mvn clean package -DskipTests -Dmaven.repo.local=.m2/repository/'
@@ -20,6 +19,7 @@ variables:
 
   TEST_SHELL: 'mvn test -Dmaven.repo.local=.m2/repository/'
   TEST_IMAGE: 'maven:3.8.3-jdk-8'
+  JUNIT_REPORT_PATH: 'target/surefire-reports/TEST-*.xml'
 
   SONAR_SCANNER_IMAGE: 'sonarsource/sonar-scanner-cli:4.6'
   SCAN_DIR: 'src'
@@ -53,15 +53,16 @@ stages:
   - parallel01
 
 build:
-  variables:
-    # should pull latest code
-    GIT_CHECKOUT: "true"
+  #variables:
+    # should pull the latest code
+  #  GIT_CHECKOUT: "true"
   stage: build
   extends: .build
 
 test:
   stage: test
   extends: .test
+  # Junit report of Java
   artifacts:
     reports:
       junit: ${JUNIT_REPORT_PATH}
