@@ -89,7 +89,17 @@ code-analysis:
 deploy-artifacts:
   stage: parallel01
   extends: .deploy-artifact
+  cache:
+    # use branchName as cache Key
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - ${CACHE_DIR}
 
 build-image:
   stage: parallel01
   extends: .build-image
+  cache:
+    # use branchName as cache Key
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - ${CACHE_DIR}
