@@ -26,9 +26,9 @@ variables:
   SCAN_DIR: 'src'
   SONAR_USER: 'admin'
   SONAR_PASSWORD: 'pzb19930830'
-  SONAR_SCAN_ARGS: '-Dsonar.sourceEncoding=UTF-8 \
-                    -Dsonar.java.binaries=target/classes \
-                    -Dsonar.java.test.binaries=target/test-classes \
+  SONAR_SCAN_ARGS: '-Dsonar.sourceEncoding=UTF-8
+                    -Dsonar.java.binaries=target/classes
+                    -Dsonar.java.test.binaries=target/test-classes
                     -Dsonar.java.surefire.report=target/surefire-reports'
 
   ARTIFACT_PATH: 'target/*.jar'
