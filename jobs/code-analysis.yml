@@ -7,7 +7,7 @@
   # -Dsonar.branch.name=${CI_COMMIT_REF_NAME}"
   # https://github.com/mc1arke/sonarqube-community-branch-plugin/tree/master
   script:
-    - echo $CI_MERGE_REQUEST_IID $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+    #- echo $CI_MERGE_REQUEST_IID $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
     - "sonar-scanner -Dsonar.host.url=${SONAR_SERVER_URL} \
                      -Dsonar.login=${SONAR_USER} \
                      -Dsonar.password=${SONAR_PASSWORD} \

@@ -79,6 +79,11 @@ test:
 code-analysis:
   stage: parallel01
   extends: .code-analysis
+  cache:
+    # use branchName as cache Key
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - ${CACHE_DIR}
 
 deploy-artifacts:
   stage: parallel01
