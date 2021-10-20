@@ -12,7 +12,7 @@ include:
 variables:
   JUNIT_REPORT_PATH: 'target/surefire-reports/TEST-*.xml'
   CACHE_DIR: 'target/'
-
+  MAVEN_OPTS: '-Dmaven.repo.local=.m2/repository/'
   BUILD_SHELL: 'mvn clean package -DskipTests'
   BUILD_IMAGE: 'maven:3.8.3-jdk-8'
 
@@ -32,17 +32,17 @@ variables:
   TARGET_FILE_PATH: $CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA-$CI_PIPELINE_ID
   TARGET_ARTIFACT_NAME: $CI_PROJECT_NAME-$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA-$CI_PIPELINE_ID.jar
 
-    #- docker login -u ${DOCKER_REGISTRY_USER} -p ${DOCKER_REGISTRY_PASSWORD} ${DOCKER_REGISTRY_URL}
-    #- docker build -t ${IMAGE_NAME} -f ${DOCKER_FILE_PATH} .
   DOCKER_REGISTRY_USER: "admin"
   DOCKER_REGISTRY_PASSWORD: "Harbor12345"
   DOCKER_REGISTRY_URL: "harbor.devops.com"
   IMAGE_NAME: $CI_PROJECT_NAME:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA-$CI_PIPELINE_ID
   DOCKER_FILE_PATH: "./Dockerfile"
+
 # 定义全局缓存
 cache:
   paths:
     - ${CACHE_DIR}
+    - ${MAVEN_CACHE}
 
 stages:
   - build
