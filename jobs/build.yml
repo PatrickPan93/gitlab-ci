@@ -17,9 +17,8 @@
 .build-image:
   stage: build-image
   image:
-  # name: gcr.io/kaniko-project/executor:debug
+    name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
   script:
     - echo "{\"auths\":{\"$DOCKER_REGISTRY_URL\":{\"username\":\"$DOCKER_REGISTRY_USER\",\"password\":\"$DOCKER_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor --skip-tls-verify --context "./" --dockerfile $DOCKER_FILE_PATH --destination $DOCKER_REGISTRY_URL/library/$IMAGE_NAME
-
