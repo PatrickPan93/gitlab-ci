@@ -21,7 +21,7 @@
     entrypoint: [""]
   script:
     - echo "{\"auths\":{\"$DOCKER_REGISTRY_URL\":{\"username\":\"$DOCKER_REGISTRY_USER\",\"password\":\"$DOCKER_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context "./" --dockerfile $DOCKER_FILE_PATH --destination $DOCKER_REGISTRY_URL/$IMAGE_NAME
+    - /kaniko/executor --context "./" --dockerfile $DOCKER_FILE_PATH --destination $DOCKER_REGISTRY_URL/$CI_PROJECT_NAME/$IMAGE_NAME
   #script:
   #  - docker login -u ${DOCKER_REGISTRY_USER} -p ${DOCKER_REGISTRY_PASSWORD} ${DOCKER_REGISTRY_URL}
   #  - docker build -t ${IMAGE_NAME} -f ${DOCKER_FILE_PATH} .
