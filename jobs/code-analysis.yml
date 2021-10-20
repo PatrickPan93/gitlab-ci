@@ -42,7 +42,6 @@
       SONAR_REPORT_URL=$(grep "ceTaskUrl" target/report-task.txt  | awk -F = '{OFS="=";print $2,$3}')
       echo ${SONAR_REPORT_URL}
 
-
       for i in {1..10}
       do
         curl -k -u "${SONAR_USER}":"${SONAR_PASSWORD}" ${SONAR_REPORT_URL}  -o sonar_result.txt -s

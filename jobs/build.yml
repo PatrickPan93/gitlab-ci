@@ -8,16 +8,6 @@
       when: never
     - when: always
 
-.deploy-artifact:
-  image: centos:8
-  stage: deploy-artifact
-  script:
-    - curl -u ${ARTIFACTORY_USER}:${ARTIFACTORY_PASSWORD} -T ${ARTIFACT_PATH} ${ARTIFACTORY_URL}/${ARTIFACTORY_NAME}/${TARGET_FILE_PATH}/${TARGET_ARTIFACT_NAME}
-  rules:
-    - if: " $DEPLOY_ARTIFACT_TO_ARTIFACTORY == 'no' "
-      when: never
-    - when: on_success
-
 .build-image:
   stage: build-image
   image:

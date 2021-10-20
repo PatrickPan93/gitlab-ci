@@ -8,6 +8,9 @@ include:
   - project: 'devops/gitlab-ci'
     ref: main
     file: 'jobs/code-analysis.yml'
+  - project: 'devops/gitlab-ci'
+    ref: main
+    file: 'jobs/artifactory.yml'
 
 workflow:
   rules:
@@ -25,7 +28,7 @@ variables:
 
   # job流程控制
   RUN_PIPELINE_BUILD: 'yes'
-  DEPLOY_ARTIFACT_TO_ARTIFACTORY: 'yes'
+  RUN_DEPLOY_ARTIFACTS: 'yes'
   RUN_BUILD_IMAGE: 'yes'
   RUN_CODE_ANALYSIS: 'yes'
 
