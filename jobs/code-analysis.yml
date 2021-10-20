@@ -24,7 +24,7 @@
   script:
     #- echo $CI_MERGE_REQUEST_IID $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
     - "sonar-scanner ${GLOBAL_PROJECT_ARGS} ${GLOBAL_SERVER_ARGS} ${SONAR_SCAN_ARGS} ${MULTI_BRANCH_ARGS}"
-    - mv -f .scannerwork/report-task.txt target/
+    - "mv -f .scannerwork/report-task.txt target/"
   #artifacts:
   #  paths:
   #    - "${ARTIFACT_PATH}"
@@ -34,8 +34,8 @@
     - when: on_success
 
 #### 获取代码扫描结果
-.get_analysis_result:
-  stage: get_analysis_result
+.get-analysis-result:
+  stage: get-analysis-result
   image: centos:8
   script:
     - |
