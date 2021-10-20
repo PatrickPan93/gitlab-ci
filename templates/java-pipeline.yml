@@ -80,6 +80,7 @@ code-analysis:
   stage: parallel01
   extends: .code-analysis
   cache:
+    policy: pull
     # use branchName as cache Key
     key: ${CI_COMMIT_REF_SLUG}
     paths:
