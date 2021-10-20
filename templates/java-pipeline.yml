@@ -10,6 +10,8 @@ include:
     file: 'jobs/code-analysis.yml'
 
 variables:
+  # control whether pull the latest code
+  GIT_CHECKOUT: "false"
   JUNIT_REPORT_PATH: 'target/surefire-reports/TEST-*.xml'
   CACHE_DIR: 'target/'
   MAVEN_CACHE: '.m2/repository/'
@@ -39,6 +41,7 @@ variables:
 
 # 定义全局缓存
 cache:
+  # use branchName as cache Key
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - ${CACHE_DIR}
@@ -50,6 +53,9 @@ stages:
   - parallel01
 
 build:
+  variables:
+    # should pull latest code
+    GIT_CHECKOUT: "true"
   stage: build
   extends: .build
 
