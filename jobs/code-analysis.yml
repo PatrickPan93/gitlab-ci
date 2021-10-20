@@ -1,6 +1,21 @@
 .code-analysis:
   stage: code-analysis
   image: ${SONAR_SCANNER_IMAGE}
+  variables:
+    GLOBAL_PROJECT_ARGS: "-Dsonar.projectKey=${CI_PROJECT_NAME}
+                          -Dsonar.projectName=${CI_PROJECT_NAME}
+                          -Dsonar.projectVersion=${CI_COMMIT_REF_NAME}
+                          -Dsonar.projectDescription=${CI_PROJECT_TITLE}
+                          -Dsonar.language=${SONAR_PROJECT_LANG}
+                          -Dsonar.source=${SCAN_DIR}"
+    #-Dsonar.login=${SONAR_SERVER_LOGIN}:
+    GLOBAL_SERVER_ARGS: "-Dsonar.ws.timeout=30
+                          -Dsonar.links.homepage=${CI_PROJECT_URL}
+                          -Dsonar.host.url=${SONAR_SERVER_URL}
+                          -Dsonar.login=${SONAR_USER}
+                          -Dsonar.password=${SONAR_PASSWORD}
+                          -Dsonar.sourceEncoding=UTF-8"
+    MULTI_BRANCH_ARGS: "-Dsonar.branch.name=${CI_COMMIT_REF_NAME}"
   #tags:
   #  - build
   # multi branches require sonarqube-community-branch-plugin installed in SonarQube Server.
@@ -8,19 +23,7 @@
   # https://github.com/mc1arke/sonarqube-community-branch-plugin/tree/master
   script:
     #- echo $CI_MERGE_REQUEST_IID $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
-    - "sonar-scanner -Dsonar.host.url=${SONAR_SERVER_URL} \
-                     -Dsonar.language=${SONAR_PROJECT_LANG} \
-                     -Dsonar.login=${SONAR_USER} \
-                     -Dsonar.password=${SONAR_PASSWORD} \
-                     -Dsonar.projectKey=${CI_PROJECT_NAME} \
-                     -Dsonar.projectName=${CI_PROJECT_NAME} \
-                     -Dsonar.projectVersion=${CI_COMMIT_REF_NAME} \
-                     -Dsonar.ws.timeout=30 \
-                     -Dsonar.projectDescription=${CI_PROJECT_TITLE} \
-                     -Dsonar.links.homepage=${CI_PROJECT_URL} \
-                     -Dsonar.source=${SCAN_DIR} \
-                     -Dsonar.branch.name=${CI_COMMIT_REF_NAME} \
-                     ${SONAR_SCAN_ARGS}"
+    - "sonar-scanner ${GLOBAL_PROJECT_ARGS} ${GLOBAL_SERVER_ARGS} ${SONAR_SCAN_ARGS} ${MULTI_BRANCH_ARGS}"
   artifacts:
     paths:
       - "${ARTIFACT_PATH}"
