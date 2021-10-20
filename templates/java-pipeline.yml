@@ -36,7 +36,7 @@ variables:
     #- docker build -t ${IMAGE_NAME} -f ${DOCKER_FILE_PATH} .
   DOCKER_REGISTRY_USER: "admin"
   DOCKER_REGISTRY_PASSWORD: "Harbor12345"
-  DOCKER_REGISTRY_URL: "http://harbor.devops.com"
+  DOCKER_REGISTRY_URL: "harbor.devops.com"
   IMAGE_NAME: $CI_PROJECT_NAME:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA-$CI_PIPELINE_ID
   DOCKER_FILE_PATH: "./Dockerfile"
 # 定义全局缓存
