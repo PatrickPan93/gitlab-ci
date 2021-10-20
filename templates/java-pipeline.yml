@@ -22,7 +22,15 @@ variables:
   JUNIT_REPORT_PATH: 'target/surefire-reports/TEST-*.xml'
 
   SONAR_SCANNER_IMAGE: 'sonarsource/sonar-scanner-cli:4.6'
+  SONAR_SERVER_URL: 'http://sonarqube-sonarqube:9000'
   SCAN_DIR: 'src'
+  SONAR_USER: 'admin'
+  SONAR_PASSWORD: 'pzb19930830'
+  SONAR_SCAN_ARGS: '-Dsonar.sourceEncoding=UTF-8 \
+                    -Dsonar.java.binaries=target/classes \
+                    -Dsonar.java.test.binaries=target/test-classes \
+                    -Dsonar.java.surefire.report=target/surefire-reports'
+
   ARTIFACT_PATH: 'target/*.jar'
 
   ARTIFACTORY_USER: "admin"
