@@ -24,9 +24,9 @@ variables:
   BUILD_IMAGE: 'maven:3.8.3-jdk-8'
 
   # job流程控制
-  RUN_PIPELINE_BUILD: true
-  DEPLOY_ARTIFACT_TO_ARTIFACTORY: true
-  RUN_BUILD_IMAGE: true
+  RUN_PIPELINE_BUILD: 'yes'
+  DEPLOY_ARTIFACT_TO_ARTIFACTORY: 'yes'
+  RUN_BUILD_IMAGE: 'yes'
 
   TEST_SHELL: 'mvn test -Dmaven.repo.local=.m2/repository/'
   TEST_IMAGE: 'maven:3.8.3-jdk-8'

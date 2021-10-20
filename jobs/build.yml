@@ -8,7 +8,7 @@
     - $BUILD_SHELL $BUILD_OPTS
     - ls
   rules:
-    - if: $RUN_PIPELINE_BUILD
+    - if: " $RUN_PIPELINE_BUILD == 'no "
       when: never
     - when: always
 
@@ -18,7 +18,7 @@
   script:
     - curl -u ${ARTIFACTORY_USER}:${ARTIFACTORY_PASSWORD} -T ${ARTIFACT_PATH} ${ARTIFACTORY_URL}/${ARTIFACTORY_NAME}/${TARGET_FILE_PATH}/${TARGET_ARTIFACT_NAME}
   rules:
-    - if: $DEPLOY_ARTIFACT_TO_ARTIFACTORY
+    - if: " $DEPLOY_ARTIFACT_TO_ARTIFACTORY == 'no' "
       when: never
     - when: always
 
@@ -31,6 +31,6 @@
     - echo "{\"auths\":{\"$DOCKER_REGISTRY_URL\":{\"username\":\"$DOCKER_REGISTRY_USER\",\"password\":\"$DOCKER_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor --skip-tls-verify --context "./" --dockerfile $DOCKER_FILE_PATH --destination $DOCKER_REGISTRY_URL/library/$IMAGE_NAME
   rules:
-    - if: RUN_BUILD_IMAGE
+    - if: " $RUN_BUILD_IMAGE == 'no' "
       when: never
     - when: always
