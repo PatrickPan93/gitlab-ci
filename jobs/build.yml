@@ -4,7 +4,7 @@
   #tags:
   #  - build
   script:
-    - $BUILD_SHELL $MAVEN_OPTS
+    - $BUILD_SHELL $BUILD_OPTS
     - ls
 
 .deploy-artifact:
