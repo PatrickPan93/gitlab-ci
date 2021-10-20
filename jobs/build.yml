@@ -2,13 +2,11 @@
   stage: build
   image: |
          ${BUILD_IMAGE}
-  #tags:
-  #  - build
   script:
     - $BUILD_SHELL $BUILD_OPTS
     - ls
   rules:
-    - if: " $RUN_PIPELINE_BUILD == 'no "
+    - if: " $RUN_PIPELINE_BUILD == 'no' "
       when: never
     - when: always
 
