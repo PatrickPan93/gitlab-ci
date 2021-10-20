@@ -76,6 +76,7 @@ stages:
   - test
   - parallel01
   - get-analysis-result
+  - deploy-artifact
 
 build:
   #variables:
@@ -102,15 +103,6 @@ code-analysis:
     paths:
       - ${CACHE_DIR}
 
-deploy-artifacts:
-  stage: parallel01
-  extends: .deploy-artifact
-  cache:
-    # use branchName as cache Key
-    key: ${CI_COMMIT_REF_SLUG}
-    paths:
-      - ${CACHE_DIR}
-
 build-image:
   stage: parallel01
   extends: .build-image
@@ -123,6 +115,17 @@ build-image:
 get-analysis-result:
   stage: get-analysis-result
   extends: .get-analysis-result
+  cache:
+    # use branchName as cache Key
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - ${CACHE_DIR}
+  needs:
+    - code-analysis
+
+deploy-artifact:
+  stage: deploy-artifact
+  extends: .deploy-artifact
   cache:
     # use branchName as cache Key
     key: ${CI_COMMIT_REF_SLUG}
