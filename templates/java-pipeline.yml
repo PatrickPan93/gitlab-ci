@@ -12,12 +12,6 @@ include:
     ref: main
     file: 'jobs/artifactory.yml'
 
-workflow:
-  rules:
-    - if: $CI_COMMIT_BEFORE_SHA == "0000000000000000000000000000000000000000"
-      when: never
-    - when: always
-
 variables:
   # control whether pull the latest code
   #GIT_CHECKOUT: "false"
@@ -63,6 +57,11 @@ variables:
   IMAGE_NAME: $CI_PROJECT_NAME:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA-$CI_PIPELINE_ID
   DOCKER_FILE_PATH: "./Dockerfile"
 
+workflow:
+  rules:
+    - if: $CI_COMMIT_BEFORE_SHA == "0000000000000000000000000000000000000000"
+      when: never
+    - when: always
 # 定义全局缓存
 cache:
   # use branchName as cache Key
