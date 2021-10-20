@@ -131,3 +131,9 @@ deploy-artifact:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
       - ${CACHE_DIR}
+
+## 下载制品
+#down-artifact:
+#  image: ${CURL_IMAGE}
+#  stage: down-artifact
+#  extends: .down-artifact
