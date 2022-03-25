@@ -9,6 +9,7 @@ include:
   ref: main
   file: 'templates/java-pipeline.yml'
 
+
 # could customize your build param here or by default as the undermentioned
 variables:
   BUILD_SHELL: 'mvn clean package -DskipTests'
